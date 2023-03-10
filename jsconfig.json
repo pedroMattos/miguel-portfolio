@@ -9,6 +9,9 @@
         "src/*"
       ]
     },
+    "extensions": [
+      ".vue"
+    ],
     "lib": [
       "esnext",
       "dom",
