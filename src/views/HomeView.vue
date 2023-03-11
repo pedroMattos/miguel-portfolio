@@ -1,24 +1,17 @@
 <template>
-    <div class="home">
-        <NavHeader />
-        <ProjectView />
-    </div>
+  <div class="home">
+    <router-view></router-view>
+  </div>
 </template>
 
 <script>
-import NavHeader from "@/components/Header/NavHeader.vue";
-import ProjectView from "./ProjectView/ProjectView.vue";
 export default {
-    name: "HomeView",
-    components: {
-        NavHeader,
-        ProjectView,
-    },
+  name: "HomeView",
 };
 </script>
 
 <style lang="scss">
 .home {
-    width: 70%;
+  width: 70%;
 }
 </style>
