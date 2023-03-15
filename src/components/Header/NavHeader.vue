@@ -39,7 +39,7 @@ nav {
   height: "80px";
   padding-top: 43px;
   h1 {
-    font-size: 25px;
+    font-size: 40px;
     font-weight: 500;
     margin: 0;
   }

@@ -37,7 +37,8 @@ export default {
 
 <style lang="scss" scoped>
 section {
-  margin-top: 100px;
+  width: fit-content;
+  margin: 100px auto;
   display: grid;
   grid-template-columns: auto auto;
 }

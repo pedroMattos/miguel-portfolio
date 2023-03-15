@@ -5,8 +5,14 @@
 </template>
 
 <script>
+import getProject from "@/services/getProjects";
+
 export default {
   name: "HomeView",
+
+  mounted() {
+    // getProject();
+  },
 };
 </script>
 
