@@ -1,10 +1,25 @@
 <template>
   <div class="card">
-    <img src="../../assets/images/project-placeholder.jpg" />
+    <img :src="getImageUrl(banner)" />
     <div class="background"></div>
-    <figcaption>Lorem Ipsum</figcaption>
+    <figcaption>{{ title }}</figcaption>
   </div>
 </template>
+
+<script>
+export default {
+  props: {
+    banner: { type: String, default: null },
+    title: { type: String, default: null },
+  },
+  methods: {
+    getImageUrl(url) {
+      var images = require.context("../../assets/images/", false, /\.png$/);
+      return images("./" + url + ".png");
+    },
+  },
+};
+</script>
 
 <style lang="scss">
 .card {

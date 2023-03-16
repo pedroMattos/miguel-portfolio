@@ -2,19 +2,19 @@
   <div class="single-project">
     <NavHeader />
 
-    <section class="title">
-      <h1>{{ title }}</h1>
-      <p>{{ description }}</p>
+    <section v-if="loaded" class="title">
+      <h1>{{ projectData.title }}</h1>
+      <p>{{ projectData.description }}</p>
 
       <div class="credits">
         <p><b>Credits</b></p>
-        <p>{{ credits }}</p>
+        <p>{{ projectData.credits }}</p>
       </div>
     </section>
 
-    <section class="galery">
-      <div v-for="(item, index) in media" :key="index">
-        <h2 v-if="item.titile">{{ item.titile }}</h2>
+    <section v-if="loaded" class="galery">
+      <div v-for="(item, index) in projectData.media" :key="index">
+        <h2 v-if="item.title">{{ item.title }}</h2>
         <div v-for="(image, indexImages) in item.images" :key="indexImages">
           <img :src="getImageUrl(image)" />
         </div>
@@ -25,10 +25,13 @@
 
 <script>
 import NavHeader from "@/components/Header/NavHeader.vue";
+import getSingleProject from "@/services/getSingleProject";
 
 export default {
   data() {
     return {
+      projectData: null,
+      loaded: false,
       title: "Camarote Salvador",
       description:
         "Participei do conceito do camarote salvador, edição, motion, 3D, cobertura e derivações de peças",
@@ -47,7 +50,14 @@ export default {
     };
   },
   components: { NavHeader },
+  beforeMount() {
+    this.displayProject();
+  },
   methods: {
+    async displayProject() {
+      this.projectData = await getSingleProject(this.$route.params.name);
+      this.loaded = true;
+    },
     getImageUrl(url) {
       var images = require.context("../../assets/images/", false, /\.png$/);
       return images("./" + url + ".png");
