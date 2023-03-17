@@ -1,5 +1,5 @@
 <template>
-  <nav>
+  <nav :class="{ 'is-about-page': active === 'about' }">
     <div>
       <router-link :to="{ name: 'home' }">
         <img
@@ -9,25 +9,31 @@
         <h1 v-else>Miogx</h1>
       </router-link>
     </div>
-    <div class="navigation">
+    <div v-if="active !== 'about'" class="navigation">
       <router-link :class="{ active: active === 'home' }" :to="{ name: 'home' }"
         >Work</router-link
       >
-      <router-link
-        :class="{ active: active === 'about' }"
-        :to="{ name: 'about' }"
-        >About</router-link
-      >
+      <router-link :to="{ name: 'about' }">About</router-link>
+    </div>
+    <div v-else class="social-media">
+      <a
+        href="https://www.instagram.com/"
+        target="_blank"
+        rel="noopener noreferrer"
+        ><instagramSVG
+      /></a>
     </div>
   </nav>
 </template>
 <script>
+import instagramSVG from "@/assets/svg/instagramSVG.vue";
 export default {
   data() {
     return {
       active: this.$route.name,
     };
   },
+  components: { instagramSVG },
 };
 </script>
 <style lang="scss" scoped>
@@ -36,7 +42,7 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  height: "80px";
+  height: 80px;
   padding-top: 43px;
   h1 {
     font-size: 40px;
@@ -56,6 +62,15 @@ nav {
   .navigation {
     display: flex;
     gap: 27px;
+  }
+}
+@media (max-width: 800px) {
+  nav {
+    &:not(.is-about-page) {
+      flex-direction: column;
+      align-items: center;
+    }
+    padding: 15px;
   }
 }
 </style>

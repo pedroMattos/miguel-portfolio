@@ -62,9 +62,21 @@ export default {
       }
     }
   }
-  @media (max-width: 800px) {
+}
+@media (max-width: 800px) {
+  .about {
+    width: 100%;
+    padding: 0 7px;
     section {
+      margin-top: 50px;
       grid-template-columns: auto;
+      img {
+        width: 100%;
+      }
+
+      h1 {
+        font-size: 45px;
+      }
     }
   }
 }

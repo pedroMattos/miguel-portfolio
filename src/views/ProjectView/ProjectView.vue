@@ -6,7 +6,12 @@
         v-for="(item, index) in projectsData"
         :key="index"
         :to="{ name: 'SingleProject', params: { name: item.slug } }"
-        ><ProjectCard :banner="item.banner" :title="item.title"
+        ><ProjectCard
+          :banner="item.banner"
+          :title="item.title"
+          :next-project-slug="
+            getNextProjectSlug({ data: projectsData, actualIndex: index })
+          "
       /></router-link>
     </section>
   </div>
@@ -32,6 +37,14 @@ export default {
       this.projectsData = await getProject();
       this.loaded = true;
     },
+    getNextProjectSlug({ data, actualIndex }) {
+      if (data.length === actualIndex + 1) return;
+
+      return {
+        slug: data[actualIndex + 1].slug,
+        title: data[actualIndex + 1].title,
+      };
+    },
   },
   beforeMount() {
     this.displayProjects();
@@ -49,6 +62,7 @@ section {
 @media (max-width: 800px) {
   section {
     grid-template-columns: auto;
+    margin: 50px auto;
   }
 }
 </style>

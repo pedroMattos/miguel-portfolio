@@ -11,6 +11,7 @@ export default {
   props: {
     banner: { type: String, default: null },
     title: { type: String, default: null },
+    nextProjectSlug: { type: Object, default: () => ({}) },
   },
   methods: {
     getImageUrl(url) {
@@ -25,6 +26,7 @@ export default {
 .card {
   position: relative;
   margin: 10px;
+  height: 100%;
   img {
     width: 100%;
     height: 100%;
@@ -56,6 +58,16 @@ export default {
     right: 0;
     bottom: 0;
     background-image: linear-gradient(to right, #00000014, #00000094);
+  }
+}
+@media (max-width: 800px) {
+  .card {
+    margin: 3.5px 7px;
+    figcaption {
+      left: 0;
+      font-size: 30px;
+      padding-left: 5px;
+    }
   }
 }
 </style>

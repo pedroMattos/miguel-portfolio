@@ -1,6 +1,10 @@
 <template>
   <div class="single-project">
-    <NavHeader />
+    <div class="close-area">
+      <router-link :to="{ name: 'home' }">
+        <closeSVG />
+      </router-link>
+    </div>
 
     <section v-if="loaded" class="title">
       <h1>{{ projectData.title }}</h1>
@@ -24,32 +28,17 @@
 </template>
 
 <script>
-import NavHeader from "@/components/Header/NavHeader.vue";
 import getSingleProject from "@/services/getSingleProject";
+import closeSVG from "@/assets/svg/closeSVG.vue";
 
 export default {
   data() {
     return {
       projectData: null,
       loaded: false,
-      title: "Camarote Salvador",
-      description:
-        "Participei do conceito do camarote salvador, edição, motion, 3D, cobertura e derivações de peças",
-      credits:
-        "Credits Miogx - Direction, Composition and Animation Paulinho - Art Direction",
-      media: [
-        {
-          titile: null,
-          images: ["shirt", "mockup"],
-        },
-        {
-          titile: "BreakDown",
-          images: ["shirt", "mockup"],
-        },
-      ],
     };
   },
-  components: { NavHeader },
+  components: { closeSVG },
   beforeMount() {
     this.displayProject();
   },
@@ -68,6 +57,10 @@ export default {
 
 <style lang="scss" scoped>
 .single-project {
+  .close-area {
+    display: flex;
+    justify-content: flex-end;
+  }
   font-family: "Circular Std Book", sans-serif;
   section {
     margin-top: 100px;
@@ -99,6 +92,19 @@ export default {
         margin-top: 60px;
         margin-bottom: 60px;
         font-size: 35px;
+      }
+    }
+  }
+}
+
+@media (max-width: 800px) {
+  .single-project {
+    margin: 0 7px;
+    section {
+      margin-top: 50px;
+
+      &.title {
+        width: 100%;
       }
     }
   }
