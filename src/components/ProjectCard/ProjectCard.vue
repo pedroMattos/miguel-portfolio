@@ -40,7 +40,7 @@ export default {
     color: white;
     font-weight: 500;
     letter-spacing: 0.5;
-    font-size: 40px;
+    font-size: 35px;
     opacity: 0;
     transition-duration: 0.5s;
   }
@@ -57,7 +57,12 @@ export default {
     left: 0;
     right: 0;
     bottom: 0;
-    background-image: linear-gradient(to right, #00000014, #00000094);
+    transition-duration: 0.5s;
+    background-image: linear-gradient(to right, #00000000, #00000000);
+    &:hover {
+      transition-duration: 0.5s;
+      background-image: linear-gradient(to right, #000000b4, #00000014);
+    }
   }
 }
 @media (max-width: 800px) {

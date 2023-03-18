@@ -1,10 +1,6 @@
 <template>
   <div class="single-project">
-    <div class="close-area">
-      <router-link :to="{ name: 'home' }">
-        <closeSVG />
-      </router-link>
-    </div>
+    <NavHeader />
 
     <section v-if="loaded" class="title">
       <h1>{{ projectData.title }}</h1>
@@ -18,9 +14,9 @@
 
     <section v-if="loaded" class="galery">
       <div v-for="(item, index) in projectData.media" :key="index">
-        <h2 v-if="item.title">{{ item.title }}</h2>
         <div v-for="(image, indexImages) in item.images" :key="indexImages">
-          <img :src="getImageUrl(image)" />
+          <img :src="getImageUrl(image.image)" />
+          <h2 v-if="image.title">{{ image.title }}</h2>
         </div>
       </div>
     </section>
@@ -29,7 +25,7 @@
 
 <script>
 import getSingleProject from "@/services/getSingleProject";
-import closeSVG from "@/assets/svg/closeSVG.vue";
+import NavHeader from "@/components/Header/NavHeader.vue";
 
 export default {
   data() {
@@ -38,7 +34,7 @@ export default {
       loaded: false,
     };
   },
-  components: { closeSVG },
+  components: { NavHeader },
   beforeMount() {
     this.displayProject();
   },
@@ -65,16 +61,24 @@ export default {
   section {
     margin-top: 100px;
     &.title {
+      h1 {
+        margin-bottom: 21px;
+        font-size: 35px;
+      }
       text-align: start;
       width: 450px;
       p {
         font-weight: 400;
+        letter-spacing: -0.05em;
         color: #818181;
       }
 
       .credits {
+        margin-top: 39px;
         p {
           margin: 0;
+          font-size: 12px;
+          font-weight: 450;
           b {
             color: black;
           }

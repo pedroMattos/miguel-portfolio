@@ -35,20 +35,26 @@ export default {
 <style lang="scss" scoped>
 .about {
   width: 70%;
-  font-family: "Circular Std Book";
+  font-family: "Circular Std";
+  line-height: 32px;
   section {
     margin-top: 100px;
     display: grid;
     grid-template-columns: auto auto;
+    img {
+      width: 450px;
+    }
     h1 {
       text-align: initial;
-      font-size: 30px;
+      font-size: 70px;
       font-weight: 500;
     }
     p {
       text-align: initial;
       font-size: 14px;
+      font-weight: 450;
       color: #818181;
+      letter-spacing: -0.05em;
       &.school-definition {
         margin-top: 60px;
 

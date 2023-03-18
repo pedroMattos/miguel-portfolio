@@ -17,7 +17,7 @@
     </div>
     <div v-else class="social-media">
       <a
-        href="https://www.instagram.com/"
+        href="https://www.instagram.com/miogx_/"
         target="_blank"
         rel="noopener noreferrer"
         ><instagramSVG
@@ -44,6 +44,8 @@ nav {
   align-items: flex-end;
   height: 80px;
   padding-top: 43px;
+  padding-left: 7px;
+  padding-right: 7px;
   h1 {
     font-size: 40px;
     font-weight: 500;
