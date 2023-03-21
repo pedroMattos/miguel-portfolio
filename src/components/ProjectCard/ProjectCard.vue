@@ -61,7 +61,7 @@ export default {
     background-image: linear-gradient(to right, #00000000, #00000000);
     &:hover {
       transition-duration: 0.5s;
-      background-image: linear-gradient(to right, #000000b4, #00000014);
+      background-image: linear-gradient(to right, #00000077, #00000014);
     }
   }
 }

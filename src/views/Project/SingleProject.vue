@@ -1,6 +1,11 @@
 <template>
   <div class="single-project">
-    <NavHeader />
+    <router-link v-if="isMobile" :to="{ name: 'home' }">
+      <div class="close-area">
+        <CloseSVG />
+      </div>
+    </router-link>
+    <NavHeader v-else />
 
     <section v-if="loaded" class="title">
       <h1>{{ projectData.title }}</h1>
@@ -14,31 +19,69 @@
 
     <section v-if="loaded" class="galery">
       <div v-for="(item, index) in projectData.media" :key="index">
-        <div v-for="(image, indexImages) in item.images" :key="indexImages">
-          <img :src="getImageUrl(image.image)" />
-          <h2 v-if="image.title">{{ image.title }}</h2>
-        </div>
+        <img :src="getImageUrl(item.image)" />
+        <h2 v-if="item.title">{{ item.title }}</h2>
       </div>
     </section>
+
+    <div v-if="nextProject" class="next-project">
+      <router-link
+        :to="{ name: 'SingleProject', params: { name: nextProject.slug } }"
+      >
+        {{ nextProject.title }} >
+      </router-link>
+    </div>
   </div>
 </template>
 
 <script>
 import getSingleProject from "@/services/getSingleProject";
 import NavHeader from "@/components/Header/NavHeader.vue";
+import CloseSVG from "@/assets/svg/closeSVG.vue";
+import { mapGetters } from "vuex";
 
 export default {
   data() {
     return {
       projectData: null,
       loaded: false,
+      isMobile: window.innerWidth < 800,
     };
   },
-  components: { NavHeader },
+  components: { NavHeader, CloseSVG },
+  watch: {
+    $route(to) {
+      this.savenextProject(
+        this.nextProject.all.findIndex((item) => item.slug === to.params.name)
+      );
+    },
+  },
+  computed: {
+    ...mapGetters({
+      nextProject: "getNextProject",
+    }),
+  },
   beforeMount() {
     this.displayProject();
   },
+  beforeRouteLeave(to, from, next) {
+    next();
+  },
   methods: {
+    savenextProject(actualIndex) {
+      window.location.reload();
+      if (this.nextProject.all.length === actualIndex + 1) return;
+
+      if (!this.nextProject.all) {
+        this.$store.commit("nextProject", null);
+        return;
+      }
+      this.$store.commit("nextProject", {
+        slug: this.nextProject.all[actualIndex + 1].slug,
+        title: this.nextProject.all[actualIndex + 1].title,
+        all: this.projectsData,
+      });
+    },
     async displayProject() {
       this.projectData = await getSingleProject(this.$route.params.name);
       this.loaded = true;
@@ -54,12 +97,14 @@ export default {
 <style lang="scss" scoped>
 .single-project {
   .close-area {
+    margin-top: 20px;
     display: flex;
     justify-content: flex-end;
   }
   font-family: "Circular Std Book", sans-serif;
   section {
     margin-top: 100px;
+    padding: 0 7px;
     &.title {
       h1 {
         margin-bottom: 21px;
@@ -99,12 +144,25 @@ export default {
       }
     }
   }
+  .next-project {
+    margin-top: 70px;
+    margin-bottom: 60px;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    a {
+      font-size: 20px;
+      color: black;
+      text-decoration: none;
+    }
+  }
 }
 
 @media (max-width: 800px) {
   .single-project {
     margin: 0 7px;
     section {
+      padding: 0;
       margin-top: 50px;
 
       &.title {

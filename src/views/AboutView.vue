@@ -3,7 +3,7 @@
     <NavHeader />
     <section>
       <img src="../assets/images/about-placeholder.png" />
-      <div>
+      <div class="information">
         <h1>Miogx</h1>
         <p>
           Motion Designer autodidata. Ele vive em Salvador e tem uma paixão por
@@ -15,8 +15,8 @@
           de integrar novas técnicas em seu trabalho.
         </p>
         <p class="school-definition">
-          <span>School</span>
-          Enfinity School, Lymonade,Escola de Artes Britanica,
+          <b>School</b>
+          <span>Enfinity School, Lymonade,Escola de Artes Britanica,</span>
         </p>
       </div>
     </section>
@@ -38,6 +38,9 @@ export default {
   font-family: "Circular Std";
   line-height: 32px;
   section {
+    .information {
+      max-width: 800px;
+    }
     margin-top: 100px;
     display: grid;
     grid-template-columns: auto auto;
@@ -59,11 +62,13 @@ export default {
         margin-top: 60px;
 
         span {
+          text-decoration: underline;
+          color: #00000079;
+        }
+        b {
           text-decoration: none;
           margin-right: 20px;
         }
-        text-decoration: underline;
-        color: #000000;
         opacity: 0.8;
       }
     }

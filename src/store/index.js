@@ -4,9 +4,17 @@ import Vuex from "vuex";
 Vue.use(Vuex);
 
 export default new Vuex.Store({
-  state: {},
-  getters: {},
-  mutations: {},
+  state: {
+    nextProject: null,
+  },
+  getters: {
+    getNextProject: (state) => state.nextProject,
+  },
+  mutations: {
+    nextProject: (state, payload) => {
+      state.nextProject = payload;
+    },
+  },
   actions: {},
   modules: {},
 });
