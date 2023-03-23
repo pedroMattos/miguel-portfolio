@@ -1,6 +1,6 @@
 <template>
   <div class="card">
-    <img :src="getImageUrl(banner)" />
+    <img :src="banner" />
     <div class="background"></div>
     <figcaption>{{ title }}</figcaption>
   </div>

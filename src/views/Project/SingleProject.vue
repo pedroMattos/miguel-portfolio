@@ -18,8 +18,8 @@
     </section>
 
     <section v-if="loaded" class="galery">
-      <div v-for="(item, index) in projectData.media" :key="index">
-        <img :src="getImageUrl(item.image)" />
+      <div v-for="(item, index) in projectData.receipt" :key="index">
+        <img :src="item.image" />
         <h2 v-if="item.title">{{ item.title }}</h2>
       </div>
     </section>
