@@ -23,7 +23,6 @@
         <iframe
           v-else
           width="100%"
-          height="50vh"
           src="https://player.vimeo.com/video/802897228?api=1&amp;background=1&amp;mute=0&amp;autoplay=1&amp;loop=1&amp;color=ff5900&amp;title=0&amp;byline=0&amp;portrait=0"
           frameborder="0"
         ></iframe>
@@ -103,6 +102,9 @@ export default {
 
 <style lang="scss" scoped>
 .single-project {
+  iframe {
+    height: 50vh;
+  }
   .close-area {
     margin-top: 20px;
     display: flex;
