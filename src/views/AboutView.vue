@@ -45,7 +45,7 @@ export default {
     display: grid;
     grid-template-columns: auto auto;
     img {
-      width: 450px;
+      width: 550px;
     }
     h1 {
       text-align: initial;

@@ -23,8 +23,10 @@
         <iframe
           v-else
           width="100%"
-          src="https://player.vimeo.com/video/802897228?api=1&amp;background=1&amp;mute=0&amp;autoplay=1&amp;loop=1&amp;color=ff5900&amp;title=0&amp;byline=0&amp;portrait=0"
+          :src="item.image"
           frameborder="0"
+          allow="autoplay; encrypted-media"
+          allowfullscreen
         ></iframe>
         <h2 v-if="item.title">{{ item.title }}</h2>
       </div>
@@ -91,10 +93,6 @@ export default {
     async displayProject() {
       this.projectData = await getSingleProject(this.$route.params.name);
       this.loaded = true;
-    },
-    getImageUrl(url) {
-      var images = require.context("../../assets/images/", false, /\.png$/);
-      return images("./" + url + ".png");
     },
   },
 };

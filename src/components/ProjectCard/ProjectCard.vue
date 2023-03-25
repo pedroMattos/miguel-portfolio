@@ -13,20 +13,13 @@ export default {
     title: { type: String, default: null },
     nextProjectSlug: { type: Object, default: () => ({}) },
   },
-  methods: {
-    getImageUrl(url) {
-      var images = require.context("../../assets/images/", false, /\.png$/);
-      return images("./" + url + ".png");
-    },
-  },
 };
 </script>
 
 <style lang="scss">
 .card {
   position: relative;
-  margin: 10px;
-  height: 100%;
+  margin: 5px 10px;
   img {
     width: 100%;
     height: 100%;
@@ -56,12 +49,13 @@ export default {
     top: 0;
     left: 0;
     right: 0;
-    bottom: 0;
+    bottom: 5px;
+    opacity: 0;
     transition-duration: 0.5s;
-    background-image: linear-gradient(to right, #00000000, #00000000);
+    background-image: linear-gradient(to right, #00000077, #00000014);
     &:hover {
+      opacity: 1;
       transition-duration: 0.5s;
-      background-image: linear-gradient(to right, #00000077, #00000014);
     }
   }
 }
