@@ -13,7 +13,13 @@ export default async function getSingleProject(slug) {
     collection(dbReference, "works"),
     where("slug", "==", slug)
   );
-  const querySnapshot = await getDocs(queriedDocument);
-
-  return querySnapshot.docs.map((doc) => doc.data()).at(0);
+  let querySnapshot;
+  try {
+    querySnapshot = await getDocs(queriedDocument);
+  } catch (e) {
+    console.log(e);
+  } finally {
+    // eslint-disable-next-line no-unsafe-finally
+    return querySnapshot.docs.map((doc) => doc.data()).at(0);
+  }
 }

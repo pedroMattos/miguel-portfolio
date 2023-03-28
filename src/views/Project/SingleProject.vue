@@ -18,7 +18,11 @@
     </section>
 
     <section v-if="loaded" class="galery">
-      <div v-for="(item, index) in projectData.receipt" :key="index">
+      <div
+        class="image-wrapper"
+        v-for="(item, index) in projectData.receipt"
+        :key="index"
+      >
         <img v-if="item.type === 'image'" :src="item.image" />
         <iframe
           v-else
@@ -100,8 +104,12 @@ export default {
 
 <style lang="scss" scoped>
 .single-project {
+  .image-wrapper {
+    display: flex;
+    flex-direction: column;
+  }
   iframe {
-    height: 50vh;
+    height: 720px;
   }
   .close-area {
     margin-top: 20px;
@@ -110,8 +118,11 @@ export default {
   }
   font-family: "Circular Std Book", sans-serif;
   section {
+    display: flex;
     margin-top: 100px;
     padding: 0 7px;
+    flex-direction: column;
+    gap: 7px;
     &.title {
       h1 {
         margin-bottom: 21px;
@@ -167,6 +178,9 @@ export default {
 
 @media (max-width: 800px) {
   .single-project {
+    iframe {
+      height: 30vh;
+    }
     margin: 0 7px;
     section {
       padding: 0;
