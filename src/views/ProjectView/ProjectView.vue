@@ -31,13 +31,17 @@ export default {
       projectsData: null,
       loaded: false,
       gifLarge:
-        "https://firebasestorage.googleapis.com/v0/b/miguel-melo-design-test-bd.appspot.com/o/load%2FGif%20M%20Loading.gif?alt=media&token=97a12d2c-34f5-48b5-abcf-48edf3e551ac",
+        "https://firebasestorage.googleapis.com/v0/b/miguel-melo-design-test-bd.appspot.com/o/load%2F300x300.gif?alt=media&token=59714caa-9ab9-4c82-a25f-990634cc786c",
       gifMobile:
         "https://firebasestorage.googleapis.com/v0/b/miguel-melo-design-test-bd.appspot.com/o/load%2F150x150-fundo-branco.gif?alt=media&token=46707ade-4960-45c5-9e04-c002798d1b1d",
       isMobile: window.innerWidth < 800,
     };
   },
   beforeRouteLeave(to, from, next) {
+    this.$store.commit(
+      "currentProject",
+      this.projectsData.find((project) => project.slug === to.params.name)
+    );
     this.getNextProjectSlug(
       this.projectsData,
       this.projectsData.findIndex((item) => item.slug === to.params.name)
@@ -75,8 +79,8 @@ section {
   grid-template-columns: auto auto;
 }
 iframe {
-  width: 700px;
-  height: 700px;
+  width: 300px;
+  height: 300px;
 }
 .is-loading {
   display: flex;

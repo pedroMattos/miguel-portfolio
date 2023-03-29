@@ -6,31 +6,35 @@
       </div>
     </router-link>
     <NavHeader v-else />
-
-    <section v-if="loaded" class="title">
-      <h1>{{ projectData.title }}</h1>
-      <p>{{ projectData.description }}</p>
+    <section class="title">
+      <h1>{{ currentProject.title }}</h1>
+      <p>{{ currentProject.description }}</p>
 
       <div class="credits">
         <p><b>Credits</b></p>
-        <p>{{ projectData.credits }}</p>
+        <p>{{ currentProject.credits }}</p>
       </div>
     </section>
 
-    <section v-if="loaded" class="galery">
+    <section v-if="currentProject" class="galery">
       <div
         class="image-wrapper"
-        v-for="(item, index) in projectData.receipt"
+        v-for="(item, index) in currentProject.receipt"
         :key="index"
       >
-        <img v-if="item.type === 'image'" :src="item.image" />
+        <img
+          v-if="item.type === 'image'"
+          :src="item.image"
+          @load="displayAnimation"
+        />
         <iframe
-          v-else
+          v-if="item.type !== 'image'"
           width="100%"
           :src="item.image"
           frameborder="0"
           allow="autoplay; encrypted-media"
           allowfullscreen
+          @load="displayAnimationIframe"
         ></iframe>
         <h2 v-if="item.title">{{ item.title }}</h2>
       </div>
@@ -47,7 +51,6 @@
 </template>
 
 <script>
-import getSingleProject from "@/services/getSingleProject";
 import NavHeader from "@/components/Header/NavHeader.vue";
 import CloseSVG from "@/assets/svg/closeSVG.vue";
 import { mapGetters } from "vuex";
@@ -71,15 +74,33 @@ export default {
   computed: {
     ...mapGetters({
       nextProject: "getNextProject",
+      currentProject: "currentProject",
     }),
-  },
-  beforeMount() {
-    this.displayProject();
   },
   beforeRouteLeave(to, from, next) {
     next();
   },
   methods: {
+    displayAnimationIframe() {
+      const iframes = document.querySelector("iframe");
+      iframes.classList.add("image-anim");
+      setTimeout(() => {
+        iframes.classList.remove("image-anim");
+        iframes.classList.add("image-perm");
+      }, 1000);
+    },
+    displayAnimation() {
+      const image = document.querySelector("img");
+      const iframes = document.querySelector("iframe");
+      image.classList.add("image-anim");
+      if (iframes) {
+        iframes.classList.add("image-anim");
+      }
+      setTimeout(() => {
+        image.classList.remove("image-anim");
+        image.classList.add("image-perm");
+      }, 1000);
+    },
     savenextProject(actualIndex) {
       window.location.reload();
       if (this.nextProject.all.length === actualIndex + 1) return;
@@ -93,10 +114,6 @@ export default {
         title: this.nextProject.all[actualIndex + 1].title,
         all: this.projectsData,
       });
-    },
-    async displayProject() {
-      this.projectData = await getSingleProject(this.$route.params.name);
-      this.loaded = true;
     },
   },
 };
@@ -154,6 +171,12 @@ export default {
         width: 100%;
         max-height: 50%;
         object-fit: cover;
+        top: 50px;
+        opacity: 0;
+        &.image-perm {
+          top: 0px;
+          opacity: 1;
+        }
       }
       h2 {
         margin-top: 60px;
@@ -173,6 +196,23 @@ export default {
       color: black;
       text-decoration: none;
     }
+  }
+}
+
+.image-anim {
+  animation-delay: 1s;
+  animation: slideIn 1s;
+  position: relative;
+}
+
+@keyframes slideIn {
+  0% {
+    top: 50px;
+    opacity: 0;
+  }
+  100% {
+    top: 0px;
+    opacity: 1;
   }
 }
 

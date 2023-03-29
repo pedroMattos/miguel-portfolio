@@ -35,7 +35,7 @@ export default {
 <style lang="scss" scoped>
 .about {
   width: 70%;
-  font-family: "Circular Std";
+  font-family: "Circular Std Book";
   line-height: 32px;
   section {
     .information {
