@@ -83,23 +83,27 @@ export default {
   },
   methods: {
     displayAnimationIframe() {
-      const iframes = document.querySelector("iframe");
-      iframes.classList.add("image-anim");
+      const iframes = document.querySelectorAll("iframe");
+      iframes.forEach((iframe) => {
+        iframe.classList.add("image-anim");
+      });
       setTimeout(() => {
-        iframes.classList.remove("image-anim");
-        iframes.classList.add("image-perm");
+        iframes.forEach((iframe) => {
+          iframe.classList.remove("image-anim");
+          iframe.classList.add("image-perm");
+        });
       }, 1000);
     },
     displayAnimation() {
-      const image = document.querySelector("img");
-      const iframes = document.querySelector("iframe");
-      image.classList.add("image-anim");
-      if (iframes) {
-        iframes.classList.add("image-anim");
-      }
+      const images = document.querySelectorAll("img");
+      images.forEach((image) => {
+        image.classList.add("image-anim");
+      });
       setTimeout(() => {
-        image.classList.remove("image-anim");
-        image.classList.add("image-perm");
+        images.forEach((image) => {
+          image.classList.remove("image-anim");
+          image.classList.add("image-perm");
+        });
       }, 1000);
     },
     savenextProject(actualIndex) {
@@ -165,12 +169,20 @@ export default {
     }
     &.galery {
       margin-top: 80px;
+      iframe {
+        top: 50px;
+        opacity: 0;
+        &.image-perm {
+          top: 0px;
+          opacity: 1;
+        }
+      }
       img {
         width: 100%;
         max-height: 50%;
         object-fit: cover;
         top: 50px;
-        // opacity: 0;
+        opacity: 0;
         &.image-perm {
           top: 0px;
           opacity: 1;
@@ -234,9 +246,6 @@ export default {
 
 @media (max-width: 800px) {
   .single-project {
-    iframe {
-      height: 30vh;
-    }
     margin: 0 7px;
     section {
       padding: 0;
