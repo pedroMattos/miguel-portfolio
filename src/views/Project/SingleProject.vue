@@ -27,15 +27,16 @@
           :src="item.image"
           @load="displayAnimation"
         />
-        <iframe
-          v-if="item.type !== 'image'"
-          width="100%"
-          :src="item.image"
-          frameborder="0"
-          allow="autoplay; encrypted-media"
-          allowfullscreen
-          @load="displayAnimationIframe"
-        ></iframe>
+        <div v-if="item.type !== 'image'" class="embed-container">
+          <iframe
+            width="100%"
+            :src="item.image"
+            frameborder="0"
+            allow="autoplay; encrypted-media"
+            allowfullscreen
+            @load="displayAnimationIframe"
+          ></iframe>
+        </div>
         <h2 v-if="item.title">{{ item.title }}</h2>
       </div>
     </section>
@@ -125,9 +126,6 @@ export default {
     display: flex;
     flex-direction: column;
   }
-  iframe {
-    height: 720px;
-  }
   .close-area {
     margin-top: 20px;
     display: flex;
@@ -172,7 +170,7 @@ export default {
         max-height: 50%;
         object-fit: cover;
         top: 50px;
-        opacity: 0;
+        // opacity: 0;
         &.image-perm {
           top: 0px;
           opacity: 1;
@@ -214,6 +212,24 @@ export default {
     top: 0px;
     opacity: 1;
   }
+}
+
+.embed-container {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+  max-width: 100%;
+}
+
+.embed-container iframe,
+.embed-container object,
+.embed-container embed {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
 
 @media (max-width: 800px) {
