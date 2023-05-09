@@ -148,7 +148,7 @@ export default {
         font-size: 35px;
       }
       text-align: start;
-      width: 450px;
+      width: 75%;
       p {
         font-weight: 400;
         letter-spacing: -0.05em;
