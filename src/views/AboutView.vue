@@ -5,14 +5,17 @@
       <img src="../assets/images/about-placeholder.png" />
       <div class="information">
         <h1>Miogx</h1>
+        <p>Hey,</p>
+        <p>Além de Miogx, você pode me chamar de Miguel!</p>
         <p>
-          Motion Designer autodidata. Ele vive em Salvador e tem uma paixão por
-          sempre estar estudando e se aperfeiçoando em suas habilidades. Ele tem
-          habilidades em design gráfico, animação, 3D e VFX. Ele é uma pessoa
-          curiosa e sempre está em busca de novos desafios e oportunidades para
-          crescer profissionalmente. Ele gosta de explorar as possibilidades
-          criativas que a tecnologia oferece e está sempre procurando maneiras
-          de integrar novas técnicas em seu trabalho.
+          Sou um motion designer, curioso e autodidata de 24 anos. Comecei me
+          desenvolvendo em jobs convencionais até me encontrar enquanto
+          profissional na animação e VFX .
+        </p>
+        <p>
+          Estou sempre apaixonado em buscar novos desafios e explorar as
+          possibilidades que a tecnologia me permite criar, para continuar
+          fazendo história com grandes nomes dentro e fora do Brasil.
         </p>
         <p class="school-definition">
           <b>School</b>
