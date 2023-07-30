@@ -19,7 +19,7 @@
         </p>
         <p class="school-definition">
           <b>School</b>
-          <span>Enfinity School, Lymonade,Escola de Artes Britanica,</span>
+          <span>Enfinity School, Lymonade,Escola de Artes Britanica.</span>
         </p>
       </div>
     </section>
