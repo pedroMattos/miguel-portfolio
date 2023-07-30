@@ -23,6 +23,7 @@ export default {
   img {
     width: 100%;
     height: 100%;
+    filter: grayscale(1);
   }
 
   figcaption {
@@ -38,6 +39,9 @@ export default {
     transition-duration: 0.5s;
   }
   &:hover {
+    img {
+      filter: grayscale(0);
+    }
     figcaption {
       opacity: 1;
       transition-duration: 0.5s;
