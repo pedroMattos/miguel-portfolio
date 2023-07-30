@@ -30,6 +30,7 @@
         <div v-if="item.type !== 'image'" class="embed-container">
           <iframe
             width="100%"
+            height="104%"
             :src="item.image"
             frameborder="0"
             allow="autoplay; encrypted-media"
@@ -141,7 +142,6 @@ export default {
     margin-top: 100px;
     padding: 0 7px;
     flex-direction: column;
-    gap: 7px;
     &.title {
       h1 {
         margin-bottom: 21px;
